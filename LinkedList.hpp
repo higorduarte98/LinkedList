@@ -1,7 +1,7 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
-#include<iostream>
+#include <iostream>
 #include "Exception.hpp"
 
 using namespace std;
@@ -41,6 +41,16 @@ LinkedList<T>::LinkedList(){
 
 template <class T> 
 LinkedList<T>::~LinkedList(){
+    Node* next = nullptr;
+    Node* node = list.first;
+
+    if(node == nullptr){
+        while(node != nullptr){
+            next = node->next;
+            delete node;
+            node = next;
+        }
+    }
 
 }
 

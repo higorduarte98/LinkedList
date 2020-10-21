@@ -38,7 +38,4 @@ void tests(){
 
     // EMPTY FUNCTION TEST
     assert(list.empty() == true);
-
-    
-
 }
