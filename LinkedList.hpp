@@ -7,66 +7,54 @@
 using namespace std;
 
 template<class T>
-class LinkedList{
-    private:
-        struct Node
-        {
-            T data;
-            Node* next;
-        };
+class LinkedList {
+private:
+    struct Node {
+        T data;
+        Node *next;
+    };
 
-        struct List
-        {
-            Node* first;
-        };
+    struct List {
+        Node *first;
+    };
 
-        List list;
-        int n;
+    List list;
+    int n;
 
-    public:
-        LinkedList();
-        ~LinkedList();
-        void add(T);
-        void remove(int);
-        T get(int);
-        int size();
-        bool empty();
+public:
+    LinkedList();
+    ~LinkedList();
+    void add(T);
+    void remove(int);
+    T get(int);
+    int size();
+    bool empty();
+    void clear();
 };
 
-template <class T> 
-LinkedList<T>::LinkedList(){
+template<class T>
+LinkedList<T>::LinkedList() {
     list.first = nullptr;
     n = 0;
 }
 
-template <class T> 
-LinkedList<T>::~LinkedList(){
-    Node* next = nullptr;
-    Node* node = list.first;
-
-    if(node == nullptr){
-        while(node != nullptr){
-            next = node->next;
-            delete node;
-            node = next;
-        }
-    }
-
+template<class T>
+LinkedList<T>::~LinkedList() {
+    clear();
+    delete list.first;
 }
 
-template <class T> 
-void LinkedList<T>::add(T data){
-    Node* node = list.first;
-    Node* aux = new Node;
+template<class T>
+void LinkedList<T>::add(T data) {
+    Node *node = list.first;
+    Node *aux = new Node;
     aux->data = data;
     aux->next = nullptr;
-    
-    if(list.first == nullptr){
+
+    if (list.first == nullptr) {
         list.first = aux;
-    }
-    
-    else{
-        while(node->next != nullptr)
+    } else {
+        while (node->next != nullptr)
             node = node->next;
         node->next = aux;
     }
@@ -74,21 +62,21 @@ void LinkedList<T>::add(T data){
     n++;
 }
 
-template <class T> 
-T LinkedList<T>::get(int index){
-    Node* node = list.first;
+template<class T>
+T LinkedList<T>::get(int index) {
+    Node *node = list.first;
 
-    try{
-        if(index > n-1 || index < 0){
-            throw(Exception(""));
+    try {
+        if (index > n - 1 || index < 0) {
+            throw (Exception("Index out of bounds"));
         }
     }
-    catch(Exception e){
+    catch (Exception e) {
         e.printMessageError();
         exit(0);
     }
 
-    for(int i = 0; i < index; i++){
+    for (int i = 0; i < index; i++) {
         node = node->next;
     }
 
@@ -96,21 +84,21 @@ T LinkedList<T>::get(int index){
 }
 
 template<class T>
-void LinkedList<T>::remove(int index){
-    Node* previous = nullptr;
-    Node* node = list.first;
+void LinkedList<T>::remove(int index) {
+    Node *previous = nullptr;
+    Node *node = list.first;
 
-    try{
-        if(index > n-1 || index < 0){
-            throw(Exception(""));
+    try {
+        if (index > n - 1 || index < 0) {
+            throw (Exception("Index out of bounds"));
         }
     }
-    catch(Exception e){
+    catch (Exception e) {
         e.printMessageError();
         exit(0);
     }
 
-    for(int i = 0; i < index; i++){
+    for (int i = 0; i < index; i++) {
         previous = node;
         node = node->next;
     }
@@ -124,13 +112,26 @@ void LinkedList<T>::remove(int index){
 }
 
 template<class T>
-int LinkedList<T>::size(){
+int LinkedList<T>::size() {
     return n;
 }
 
 template<class T>
-bool LinkedList<T>::empty(){
+bool LinkedList<T>::empty() {
     return (!n);
+}
+
+template<class T>
+void LinkedList<T>::clear(){
+    Node* next = nullptr;
+    Node* node = list.first;
+
+    while (node != nullptr) {
+        next = node->next;
+        delete node;
+        node = nullptr;
+        node = next; 
+    }
 }
 
 #endif

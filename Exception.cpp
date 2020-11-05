@@ -4,10 +4,10 @@
 
 using namespace std;
 
-Exception::Exception(const char* msg){
+Exception::Exception(const char *msg) {
     this->msg = strdup(msg);
 }
 
-void Exception::printMessageError(){
+void Exception::printMessageError() {
     cout << msg << endl;
 };

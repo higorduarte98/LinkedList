@@ -1,8 +1,8 @@
 #include "tests.hpp"
 #include "LinkedList.hpp"
-#include <assert.h>
+#include <cassert>
 
-void tests(){
+void tests() {
     LinkedList<int> list;
 
     // EMPTY FUNCTION TEST

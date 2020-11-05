@@ -1,5 +1,5 @@
 #include "tests.hpp"
 
-int main(){
+int main() {
     tests();
 }
